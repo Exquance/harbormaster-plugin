@@ -29,11 +29,14 @@ public class HarbormasterPayloadProcessorTest {
     @Test
     public void testProcessPayload() {
         String user = "PHID-USER-snovkf3y34d37i4e4p4t";
-        String url = "https://bitbucket.org/test_user/test_repo";
+        String build = "PHID-BLD-snovkf3y34d37i4e4p4t";
+        String url = "https://phabricator.example.com/test";
 
         JSONObject payload = new JSONObject()
             .element("initiator", new JSONObject()
                 .element("phid", user))
+            .element("target", new JSONObject()
+                .element("phid", build))
             .element("repository", new JSONObject()
                 .element("uri", url)
                 .element("vcs", "git")

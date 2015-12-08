@@ -53,6 +53,9 @@ public class HarbormasterPayloadProcessor {
     "initiator": {
         "phid": The PHID of the user or Object that initiated the build, if applicable.
     },
+    "target": {
+        "phid": The PHID of the current build target. // required to send back notifications
+    },
     "buildable": {
         "commit": The commit identifier, if applicable.
         "diff": The differential diff ID, if applicable.
@@ -66,6 +69,10 @@ public class HarbormasterPayloadProcessor {
 
         String user = payload.getJSONObject("initiator").getString("phid");
         // TODO: Query back user name from PHID via phabricator api?
+
+        String phid = payload.getJSONObject("target").getString("phid");
+        // TODO: Set it in the build environment...
+
         String url = repo.getString("uri");
         String scm = repo.getString("vcs");
 
